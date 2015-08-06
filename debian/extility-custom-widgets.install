@@ -1,0 +1,4 @@
+plugins/custom-widget-provider /opt/extility/jade-init/external-fdl/
+plugins/markdown-custom-widget /opt/extility/jade-init/external-fdl/
+plugins/twitter-custom-widget /opt/extility/jade-init/external-fdl/
+plugins/youtube-custom-widget /opt/extility/jade-init/external-fdl/

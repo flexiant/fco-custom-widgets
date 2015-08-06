@@ -1,0 +1,10 @@
+*.debhelper*
+*.substvars
+*.log
+extility-common-node-tools.debhelper.log
+extility-common-node-tools.postinst.debhelper
+extility-common-node-tools.postrm.debhelper
+extility-common-node-tools.prerm.debhelper
+extility-common-node-tools.substvars
+extility-common-node-tools/
+files

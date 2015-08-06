@@ -1,0 +1,15 @@
+Source: extility-custom-widgets
+Section: unknown
+Priority: extra
+Maintainer: Alex Bligh <alex@flexiant.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: http://www.flexiant.com/
+
+Package: extility-custom-widgets
+Architecture: any
+Description: Extility custom widgets
+ This package contains custom widget examples
+
+
+
