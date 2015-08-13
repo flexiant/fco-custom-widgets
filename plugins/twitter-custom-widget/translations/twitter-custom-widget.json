@@ -1,6 +1,20 @@
 {
-    "visible": {
-    },
-    "hidden": {
-    }
+    "#__TWITTER_FEED_ERROR_MISSING_SECRET": "You cannot retrieve the Twitter feed as the API Secret has not been set correctly",
+    "#__TWITTER_FEED_WIDGET_DESCRIPTION": "Allows for the creation of custom widgets that will display tweets posted and retweeted by a specified user.",
+    "#__TWITTER_FEED_WIDGET_NAME": "Twitter Feed Widget Provider",
+    "#__TWITTER_WIDGET_API_KEY_DESCRIPTION": "The application API Key",
+    "#__TWITTER_WIDGET_API_KEY_NAME": "API Key",
+    "#__TWITTER_WIDGET_API_SECRET_DESCRIPTION": "The application API Secret",
+    "#__TWITTER_WIDGET_API_SECRET_NAME": "API Secret",
+    "#__TWITTER_WIDGET_INC_RETWEETS_DESCRIPTION": "State if you want to display tweets retweeted by the user",
+    "#__TWITTER_WIDGET_INC_RETWEETS_NAME": "Include Retweets",
+    "#__TWITTER_WIDGET_MAX_TWEETS_DESCRIPTION": "The number of tweets to be displayed. The count will still include retweets even if they are not being displayed",
+    "#__TWITTER_WIDGET_MAX_TWEETS_NAME": "Maximum Tweets",
+    "#__TWITTER_WIDGET_PCT_DISPLAY_NAME": "Widget Display Settings",
+    "#__TWITTER_WIDGET_PCT_FEED_NAME": "Feed Options",
+    "#__TWITTER_WIDGET_PCT_SETUP_NAME": "Application Setup",
+    "#__TWITTER_WIDGET_SCREEN_NAME_DESCRIPTION": "The screen name of the displayed Twitter user.",
+    "#__TWITTER_WIDGET_SCREEN_NAME_NAME": "Screen Name",
+    "#__TWITTER_WIDGET_X_RETWEETED": "{0} Retweeted",
+    "TWITTER_FEED_WIDGET": "Twitter Feed"
 }

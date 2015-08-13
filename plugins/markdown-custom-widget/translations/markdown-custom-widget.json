@@ -1,6 +1,10 @@
 {
-    "visible": {
-    },
-    "hidden": {
-    }
+    
+    "MARKDOWN_WIDGET": "Markdown Widget",
+    "#__MARKDOWN_WIDGET_DESCRIPTION": "Allows for the creation of custom widgets containing stylised content created from markdown formatted text.",
+    "#__MARKDOWN_WIDGET_NAME": "Markdown Widget",
+    "#__MARKDOWN_WIDGET_PCT_DISPLAY_NAME": "Widget Display Settings",
+    "#__MARKDOWN_WIDGET_PCT_MARKDOWN_NAME": "Markdown",
+    "#__MARKDOWN_WIDGET_PCT_MARKDOWN_VALUE_DESCRIPTION": "The Markdown formatted text to be displayed by the custom widget.",
+    "#__MARKDOWN_WIDGET_PCT_MARKDOWN_VALUE_NAME": "Markdown"
 }

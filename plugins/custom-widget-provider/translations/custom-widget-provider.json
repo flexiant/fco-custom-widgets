@@ -1,6 +1,15 @@
 {
-    "visible": {
-    },
-    "hidden": {
-    }
+    "CUSTOM_WIDGET": "Custom Widget",
+    "#__CUSTOM_WIDGET_DESCRIPTION": "Allows for the creation of custom widgets containing custom css, html, and javascript",
+    "#__CUSTOM_WIDGET_NAME": "Custom Widget",
+    "#__CUSTOM_WIDGET_PCT_CSS_NAME": "Custom CSS",
+    "#__CUSTOM_WIDGET_PCT_CSS_VALUE_DESCRIPTION": "The CSS used for the custom widget",
+    "#__CUSTOM_WIDGET_PCT_CSS_VALUE_NAME": "CSS",
+    "#__CUSTOM_WIDGET_PCT_DISPLAY_NAME": "Widget Display Settings",
+    "#__CUSTOM_WIDGET_PCT_HTML_NAME": "Custom HTML",
+    "#__CUSTOM_WIDGET_PCT_HTML_VALUE_DESCRIPTION": "The HTML used for the custom widget",
+    "#__CUSTOM_WIDGET_PCT_HTML_VALUE_NAME": "HTML",
+    "#__CUSTOM_WIDGET_PCT_JAVASCRIPT_NAME": "Custom JavaScript",
+    "#__CUSTOM_WIDGET_PCT_JAVASCRIPT_VALUE_DESCRIPTION": "The JavaScript used for the custom widget",
+    "#__CUSTOM_WIDGET_PCT_JAVASCRIPT_VALUE_NAME": "JavaScript"
 }
