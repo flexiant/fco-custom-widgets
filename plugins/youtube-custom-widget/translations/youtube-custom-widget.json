@@ -4,5 +4,6 @@
     "#__YOUTUBE_EMBEDDED_VIDEO_ID_NAME": "Video ID",
     "#__YOUTUBE_EMBEDDED_VIDEO_NAME": "YouTube embedded video",
     "#__YOUTUBE_EMBEDDED_VIDEO_PCT_NAME": "YouTube embedded video setup",
-    "YOUTUBE_EMBEDDED_VIDEO": "YouTube embedded video"
+    "YOUTUBE_EMBEDDED_VIDEO": "YouTube embedded video",
+    "YOUTUBE_EMBEDDED_VIDEO_PLURAL": "YouTube embedded videos",
 }

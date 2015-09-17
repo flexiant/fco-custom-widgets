@@ -1,5 +1,8 @@
 {
     "CUSTOM_WIDGET": "Custom widget",
+    "CUSTOM_WIDGET_LOWERCASE": "custom widget",
+    "CUSTOM_WIDGET_PLURAL": "Custom widgets",
+    "CUSTOM_WIDGET_PLURAL_LOWERCASE": "custom widgets",
     "#__CUSTOM_WIDGET_DESCRIPTION": "Allows for the creation of custom widgets containing custom css, html, and javascript",
     "#__CUSTOM_WIDGET_NAME": "Custom widget",
     "#__CUSTOM_WIDGET_PCT_CSS_NAME": "Custom CSS",

@@ -16,5 +16,6 @@
     "#__TWITTER_WIDGET_SCREEN_NAME_DESCRIPTION": "The screen name of the displayed Twitter user.",
     "#__TWITTER_WIDGET_SCREEN_NAME_NAME": "Screen name",
     "#__TWITTER_WIDGET_X_RETWEETED": "{0} retweeted",
-    "TWITTER_FEED_WIDGET": "Twitter feed"
+    "TWITTER_FEED_WIDGET": "Twitter feed",
+    "TWITTER_FEED_WIDGET_LOWERCASE": "twitter feed",
 }

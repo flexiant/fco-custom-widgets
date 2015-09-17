@@ -1,6 +1,8 @@
 {
-    
     "MARKDOWN_WIDGET": "Markdown widget",
+    "MARKDOWN_WIDGET_LOWERCASE": "markdown widget",
+    "MARKDOWN_WIDGET_PLURAL": "Markdown widgets",
+    "MARKDOWN_WIDGET_PLURAL_LOWERCASE": "markdown widgets",
     "#__MARKDOWN_WIDGET_DESCRIPTION": "Allows for the creation of custom widgets containing stylised content created from markdown formatted text.",
     "#__MARKDOWN_WIDGET_NAME": "Markdown widget",
     "#__MARKDOWN_WIDGET_PCT_DISPLAY_NAME": "Widget display settings",
