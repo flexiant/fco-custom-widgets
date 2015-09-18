@@ -28,7 +28,7 @@ function youtube_widget_provider()
   table.insert(configurableList, videoIdParam);
 
   local actionFunctions = {};
-  table.insert(actionFunctions, widgetHelper:getContentActionDefinition("get_content_function", {"BE", "CUSTOMER"}));
+  table.insert(actionFunctions, widgetHelper:getContentActionDefinition("get_content_function", {"BE", "CUSTOMER"}, nil, true));
 
 
   return {
