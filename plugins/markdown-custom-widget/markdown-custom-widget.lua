@@ -21,7 +21,7 @@ function markdown_widget_provider()
   table.insert(pctParams, widgetHelper:getResourceIconValueDefinition(true));
 
   local actionFunctions = {};
-  table.insert(actionFunctions, widgetHelper:getContentActionDefinition("get_content_function", {"BE","CUSTOMER"}));
+  table.insert(actionFunctions, widgetHelper:getContentActionDefinition("get_content_function", {"BE", "CUSTOMER"}, nil, true));
 
   return {
     api="PLUGGABLE_PROVIDER",

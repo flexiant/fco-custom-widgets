@@ -21,7 +21,7 @@ function twitter_widget_provider()
   table.insert(pctParams, widgetHelper:getResourceIconValueDefinition(true));
 
   local actionFunctions = {};
-  table.insert(actionFunctions, widgetHelper:getContentActionDefinition("get_content_function", {"BE","CUSTOMER"}));
+  table.insert(actionFunctions, widgetHelper:getContentActionDefinition("get_content_function", {"BE", "CUSTOMER"}, nil, true));
 
   return{
     api="PLUGGABLE_PROVIDER",
@@ -163,20 +163,25 @@ function get_content_function(p)
   local apiResult = makeAPICall(connection,url,"GET","",headers,false);
   if(apiResult.success == false) then
     local response = json:decode(apiResult.response);
-    if(response.errors ~= nil and #response.errors > 0) then
-      return {
-        returnCode = "FAILED",
-        errorCode=response.errors[1].code,
-        errorString=response.errors[1].message
-      }
+    if(response ~= nil) then
+    
+      if(response.errors ~= nil and #response.errors > 0) then
+        return {
+          returnCode = "FAILED",
+          errorCode=response.errors[1].code,
+          errorString=response.errors[1].message
+        }
+      end
+      
+      if(response.error ~= nil) then
+        return {
+          returnCode = "FAILED",
+          errorCode=apiResult.statusCode,
+          errorString=response.error
+        }
+      end
     end
-    if(response.error ~= nil) then
-      return {
-        returnCode = "FAILED",
-        errorCode=apiResult.statusCode,
-        errorString=response.error
-      }
-    end
+    
     return {
       returnCode = "FAILED",
       errorCode=apiResult.statusCode,
@@ -468,9 +473,9 @@ function modify_function(p)
       return validateResult;
     end
     
-    dataStoreMap:put("api_key", apiKey);
-    dataStoreMap:put("api_secret", apiSecret);
-    dataStore:resetPrivateDataMap(p.resource:getResourceUUID(), dataStoreMap);
+    providerMap:put("api_key", apiKey);
+    providerMap:put("api_secret", apiSecret);
+    dataStore:resetPrivateDataMap(p.resource:getResourceUUID(), providerMap);
   end
   
   local resourceValues = p.resource:getResourceValues();
@@ -547,12 +552,16 @@ function makeAPICall(connection, url, method, params, headers, debug)
     local syslog = new("syslog")
     syslog.openlog("TWITTER_WIDGET", syslog.LOG_ODELAY + syslog.LOG_PID);
     syslog.syslog("LOG_INFO", "Make API Call Request");
-    syslog.syslog("LOG_INFO", method);
-    syslog.syslog("LOG_INFO", url);
+    syslog.syslog("LOG_INFO", "Method : " .. method);
+    syslog.syslog("LOG_INFO", "URL : " .. url);
     if(type(params)=="table") then
-      syslog.syslog("LOG_INFO", new("JSON"):encode(params));
+      syslog.syslog("LOG_INFO", "Params : " .. new("JSON"):encode(params));
     else
-      syslog.syslog("LOG_INFO", params);
+      syslog.syslog("LOG_INFO","Params : " .. params);
+    end
+    syslog.syslog("LOG_INFO", "Headers");
+    for k, v in pairs(headers) do
+      syslog.syslog("LOG_INFO", k .." : " .. v);
     end
     syslog.closelog();
   end
@@ -567,6 +576,7 @@ function makeAPICall(connection, url, method, params, headers, debug)
     else
       success=false;
       statusCode, response=connection:getLastError();
+      responseHeaders=connection:getResponseHeaders();
     end
   elseif(method == "DELETE") then
     if(connection:delete(apiFunction)) then
@@ -576,6 +586,7 @@ function makeAPICall(connection, url, method, params, headers, debug)
     else
       success=false;
       statusCode, response=connection:getLastError();
+      responseHeaders=connection:getResponseHeaders();
     end
   elseif(method == "PUT") then
     if(connection:put(params, apiFunction)) then
@@ -585,6 +596,7 @@ function makeAPICall(connection, url, method, params, headers, debug)
     else
       success=false;
       statusCode, response=connection:getLastError();
+      responseHeaders=connection:getResponseHeaders();
     end
   elseif(method == "POST") then
     if(connection:post(params, apiFunction)) then
@@ -594,6 +606,7 @@ function makeAPICall(connection, url, method, params, headers, debug)
     else
       success=false;
       statusCode, response=connection:getLastError();
+      responseHeaders=connection:getResponseHeaders();
     end
   end
 
@@ -605,9 +618,13 @@ function makeAPICall(connection, url, method, params, headers, debug)
     local syslog = new("syslog")
     syslog.openlog("TWITTER_WIDGET", syslog.LOG_ODELAY + syslog.LOG_PID);
     syslog.syslog("LOG_INFO", "Make API Call Result");
-    syslog.syslog("LOG_INFO", tostring(success));
-    syslog.syslog("LOG_INFO", tostring(statusCode));
-    syslog.syslog("LOG_INFO", tostring(response));
+    syslog.syslog("LOG_INFO", "Success : " .. tostring(success));
+    syslog.syslog("LOG_INFO", "Status Code : " .. tostring(statusCode));
+    syslog.syslog("LOG_INFO", "Response : " .. tostring(response));
+    syslog.syslog("LOG_INFO", "Response headers");
+    for k, v in pairs(responseHeaders) do
+      syslog.syslog("LOG_INFO", tostring(k) .." : " .. tostring(v));
+    end
     syslog.closelog();
   end
 
@@ -625,15 +642,16 @@ function getTweetText(tweet)
   for i =1, #tweet.urls, 1 do
     local url = tweet.urls[i];
 
-    text = string.gsub(text, url.url, "<a target=\"_blank\" href=\""..url.expanded_url.."\">"..url.url.."</a>");
+    local expandedURL = string.gsub(url.expanded_url, "%%", "%%%%")
+    text = string.gsub(text, url.url, "<a target=\"_blank\" href=\""..expandedURL.."\">"..url.url.."</a>");
   end
 
   for i = 1, #tweet.hashtags, 1 do
-    text = string.gsub(text, "#%f[%w]"..tweet.hashtags[i].."%f[%W]"," <a target=\"_blank\" href=\"https://twitter.com/hashtag/"..tweet.hashtags[i].."?src=hash\">#"..tweet.hashtags[i].."</a>");
+    text = string.gsub(text, "#%f[%w_]"..tweet.hashtags[i].."%f[^%w_]"," <a target=\"_blank\" href=\"https://twitter.com/hashtag/"..tweet.hashtags[i].."?src=hash\">#"..tweet.hashtags[i].."</a>");
   end
 
   for i = 1, #tweet.user_mentions, 1 do
-    text = string.gsub(text, "@%f[%w]"..tweet.user_mentions[i].screen_name.."%f[%W]", "<a target=\"_blank\" href=\"https://twitter.com/"..tweet.user_mentions[i].screen_name.."\">"..tweet.user_mentions[i].name.."</a>");
+    text = string.gsub(text, "@%f[%w_]"..tweet.user_mentions[i].screen_name.."%f[^%w_]", "<a target=\"_blank\" href=\"https://twitter.com/"..tweet.user_mentions[i].screen_name.."\">"..tweet.user_mentions[i].name.."</a>");
   end
 
   -- Remove image links, they will be added later
