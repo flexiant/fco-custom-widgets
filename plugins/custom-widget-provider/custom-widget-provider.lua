@@ -21,7 +21,7 @@ function custom_widget_provider()
   table.insert(displayParams, widgetHelper:getResourceIconValueDefinition(true));
 
   local actionFunctions = {};
-  table.insert(actionFunctions, widgetHelper:getContentActionDefinition("get_content_function", {"BE", "CUSTOMER"}, nil, true));
+  table.insert(actionFunctions, widgetHelper:getContentActionDefinition("get_content_function", {"BE","CUSTOMER"}));
 
   return {
     api="PLUGGABLE_PROVIDER",
