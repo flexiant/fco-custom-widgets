@@ -32,10 +32,10 @@ function custom_widget_provider()
     providerType="CUSTOM_WIDGET",
     providerGroup="SKYLINE_CUSTOM_WIDGET",
     providerIcon="FONT_ICON_VECTOR_PATH_ALL",
-    createFunction={executionFunction="custom_widget_create_function", invocationLevel={"BE"}},
-    deleteFunction={executionFunction="custom_widget_delete_function", invocationLevel={"BE"}},
-    modifyFunction={executionFunction="custom_widget_modify_function", invocationLevel={"BE"}},
-    advertiseFunction={executionFunction="custom_widget_advertise_function", invocationLevel={"BE"}},
+    createFunction={executionFunction="widget_create_function", invocationLevel={"BE"}},
+    deleteFunction={executionFunction="widget_delete_function", invocationLevel={"BE"}},
+    modifyFunction={executionFunction="widget_modify_function", invocationLevel={"BE"}},
+    advertiseFunction={executionFunction="widget_advertise_function", invocationLevel={"BE"}},
     productComponentTypes={
       {
         name="#__CUSTOM_WIDGET_PCT_DISPLAY_NAME",
@@ -54,7 +54,7 @@ function custom_widget_provider()
             description="#__CUSTOM_WIDGET_PCT_HTML_VALUE_DESCRIPTION",
             hidden=false,
             readOnly=false,
-            requred=false,
+            required=false,
             dataContent="CODEMIRROR:HTML",
             validator={
               validatorType="BIG_TEXT"
@@ -73,7 +73,7 @@ function custom_widget_provider()
             description="#__CUSTOM_WIDGET_PCT_CSS_VALUE_DESCRIPTION",
             hidden=false,
             readOnly=false,
-            requred=false,
+            required=false,
             dataContent="CODEMIRROR:CSS",
             validator={
               validatorType="BIG_TEXT"
@@ -92,7 +92,7 @@ function custom_widget_provider()
             description="#__CUSTOM_WIDGET_PCT_JAVASCRIPT_VALUE_DESCRIPTION",
             hidden=false,
             readOnly=false,
-            requred=false,
+            required=false,
             dataContent="CODEMIRROR:JS",
             validator={
               validatorType="BIG_TEXT"
@@ -113,7 +113,7 @@ function get_content_function(p)
   }
 end
 
-function custom_widget_create_function(p)
+function widget__create_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
   
   widgetHelper:createIconBlob(p, true);
@@ -121,7 +121,7 @@ function custom_widget_create_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
-function custom_widget_delete_function(p)
+function widget__delete_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
   
   widgetHelper:deleteIconBlob(p, false);
@@ -129,7 +129,7 @@ function custom_widget_delete_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
-function custom_widget_modify_function(p)
+function widget__modify_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
   
   widgetHelper:modifyIconBlob(p, true);
@@ -137,6 +137,6 @@ function custom_widget_modify_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
-function custom_widget_advertise_function(p)
+function widget__advertise_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end

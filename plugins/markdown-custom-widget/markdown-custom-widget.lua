@@ -32,10 +32,10 @@ function markdown_widget_provider()
     providerType="MARKDOWN_WIDGET",
     providerGroup="SKYLINE_CUSTOM_WIDGET",
     providerIcon="FONT_ICON_CIRCLE_ARROW_DOWN",
-    createFunction={executionFunction="create_function", invocationLevel={"BE"}},
-    deleteFunction={executionFunction="delete_function", invocationLevel={"BE"}},
-    modifyFunction={executionFunction="modify_function", invocationLevel={"BE"}},
-    advertiseFunction={executionFunction="advertise_function"},
+    createFunction={executionFunction="widget_create_function", invocationLevel={"BE"}},
+    deleteFunction={executionFunction="widget_delete_function", invocationLevel={"BE"}},
+    modifyFunction={executionFunction="widget_modify_function", invocationLevel={"BE"}},
+    advertiseFunction={executionFunction="widget_advertise_function"},
     productComponentTypes={
       {
         name="#__MARKDOWN_WIDGET_PCT_DISPLAY_NAME",
@@ -54,7 +54,7 @@ function markdown_widget_provider()
             description="#__MARKDOWN_WIDGET_PCT_MARKDOWN_VALUE_DESCRIPTION",
             hidden=false,
             readOnly=false,
-            requred=false,
+            required=false,
             dataContent="CODEMIRROR:MARKDOWN",
             validator={
               validatorType="BIG_TEXT"
@@ -100,7 +100,7 @@ function get_content_function(p)
   }
 end
 
-function create_function(p)
+function widget_create_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
 
   widgetHelper:createIconBlob(p, true);
@@ -108,7 +108,7 @@ function create_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
-function delete_function(p)
+function widget_delete_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
 
   widgetHelper:deleteIconBlob(p, true);
@@ -116,7 +116,7 @@ function delete_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
-function modify_function(p)
+function widget_modify_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
 
   widgetHelper:modifyIconBlob(p, true);
@@ -124,7 +124,7 @@ function modify_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
-function advertise_function(p)
+function widget_advertise_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 

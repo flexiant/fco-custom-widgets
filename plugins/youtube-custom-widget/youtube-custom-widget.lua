@@ -40,10 +40,10 @@ function youtube_widget_provider()
     providerType="YOUTUBE_EMBEDDED_VIDEO",
     providerGroup="SKYLINE_CUSTOM_WIDGET",
     providerIcon="FONT_ICON_IMAC",
-    createFunction={executionFunction="youtube_widget_create_function", invocationLevel={"BE"}},
-    deleteFunction={executionFunction="youtube_widget_delete_function", invocationLevel={"BE"}},
-    modifyFunction={executionFunction="youtube_widget_modify_function", invocationLevel={"BE"}},
-    advertiseFunction={executionFunction="youtube_widget_advertise_function", invocationLevel={"BE"}},
+    createFunction={executionFunction="widget_create_function", invocationLevel={"BE"}},
+    deleteFunction={executionFunction="widget_delete_function", invocationLevel={"BE"}},
+    modifyFunction={executionFunction="widget_modify_function", invocationLevel={"BE"}},
+    advertiseFunction={executionFunction="widget_advertise_function", invocationLevel={"BE"}},
     productComponentTypes={
       {
         name="#__YOUTUBE_EMBEDDED_VIDEO_PCT_NAME",
@@ -73,7 +73,7 @@ function get_content_function(p)
   return { returnCode = "SUCCESSFUL", returnType="STRING", returnContent=returnContent }
 end
 
-function youtube_widget_create_function(p)
+function widget_create_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
   
   widgetHelper:createIconBlob(p, true);
@@ -81,7 +81,7 @@ function youtube_widget_create_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
-function youtube_widget_delete_function(p)
+function widget_delete_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
   
   widgetHelper:deleteIconBlob(p, false);
@@ -89,7 +89,7 @@ function youtube_widget_delete_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
-function youtube_widget_modify_function(p)
+function widget_modify_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
   
   widgetHelper:modifyIconBlob(p, true);
@@ -97,7 +97,6 @@ function youtube_widget_modify_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
-function youtube_widget_advertise_function(p)
-
+function widget_advertise_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
