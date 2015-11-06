@@ -2,8 +2,8 @@
     "#__YOUTUBE_EMBEDDED_VIDEO_DESCRIPTION": "Allows for the creation of custom widgets that will embed a YouTube video in a widget",
     "#__YOUTUBE_EMBEDDED_VIDEO_ID_DESCRIPTION": "The ID number of the YouTube video",
     "#__YOUTUBE_EMBEDDED_VIDEO_ID_NAME": "Video ID",
-    "#__YOUTUBE_EMBEDDED_VIDEO_NAME": "YouTube embedded video",
+    "#__YOUTUBE_EMBEDDED_VIDEO_NAME": "YouTube widget provider",
     "#__YOUTUBE_EMBEDDED_VIDEO_PCT_NAME": "YouTube embedded video setup",
-    "YOUTUBE_EMBEDDED_VIDEO": "YouTube embedded video",
-    "YOUTUBE_EMBEDDED_VIDEO_PLURAL": "YouTube embedded videos",
+    "YOUTUBE_EMBEDDED_VIDEO": "YouTube widget",
+    "YOUTUBE_EMBEDDED_VIDEO_PLURAL": "YouTube widgets",
 }
