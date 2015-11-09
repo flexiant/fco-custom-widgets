@@ -14,14 +14,14 @@ end
 
 function youtube_widget_provider()
   local widgetHelper = new("FDLCustomWidgetHelper");
-  
-  local videoIdParam = { 
-    key="video_id", 
-    name="#__YOUTUBE_EMBEDDED_VIDEO_ID_NAME", 
-    description="#__YOUTUBE_EMBEDDED_VIDEO_ID_DESCRIPTION", 
-    required=true 
+
+  local videoIdParam = {
+    key="video_id",
+    name="#__YOUTUBE_EMBEDDED_VIDEO_ID_NAME",
+    description="#__YOUTUBE_EMBEDDED_VIDEO_ID_DESCRIPTION",
+    required=true
   }
-  
+
   local configurableList = {};
   table.insert(configurableList, widgetHelper:getResourceDescriptionValueDefinition(true));
   table.insert(configurableList, widgetHelper:getResourceIconValueDefinition(true));
@@ -59,11 +59,11 @@ end
 function get_content_function(p)
 
   local videoId = p.resourceValues.video_id;
-  
+
   local id = "youtube-" .. new("FDLHashHelper"):getRandomUUID();
-  
+
   local aspectRatio = (16/9);
-  
+
   local css = "#"..id.."{position:absolute;top:10px;left:20px;right:20px;bottom:10px;margin:auto;}#"..id..">iframe{width:100%;height:100%;}";
   local html = "<div id=\""..id.."\" class=\"youtube "..videoId.."\"><iframe src=\"https://www.youtube.com/embed/"..videoId.."?rel=0\" frameborder=\"0\" allowfullscreen></iframe></div>";
   local javascript = "var container=$(\"#"..id.."\"),width=$(container).width(),height=$(container).height(),ar="..aspectRatio..";(height*ar)>width?$(container).height(width/ar):$(container).width(height*ar);";
@@ -75,15 +75,18 @@ end
 
 function widget_create_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
-  
+
   widgetHelper:createIconBlob(p, true);
+  
+  local videoId = p.resourceValues.video_id;
+  p.resource:getResourceValues():put("video_id", validateVideoId(videoId));
 
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
 function widget_delete_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
-  
+
   widgetHelper:deleteIconBlob(p, false);
 
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
@@ -91,12 +94,54 @@ end
 
 function widget_modify_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
-  
+
   widgetHelper:modifyIconBlob(p, true);
+  
+  local videoId = p.resourceValues.video_id;
+  p.resource:getResourceValues():put("video_id", validateVideoId(videoId));
 
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
 function widget_advertise_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
+end
+
+
+function validateVideoId(videoId)
+
+  if(videoId == nil or #videoId == 11) then
+    -- traditionally, YouTube video IDs are 11 characters long
+    return videoId;
+  end
+
+  -- patterns to match some of the possible link types to get actual video ID
+  local patterns = {}
+  table.insert(patterns, "%?v=([%w%-%_]+)");
+  table.insert(patterns, "%/v/([%w%-%_]+)");
+  table.insert(patterns, "%/videos/([%w%-%_]+)");
+  table.insert(patterns, "%/embed/([%w%-%_]+)");
+  table.insert(patterns, "youtu.be?%/([%w%-%_]+)");
+
+  local newVideoId = nil;
+
+  for i = 1, #patterns, 1 do
+    local gmatchFunction = string.gmatch(videoId, patterns[i]);
+    local results = {};
+    for result in gmatchFunction do
+      table.insert(results, result);
+    end
+
+    if(#results > 0) then
+      newVideoId = results[1];
+      break;
+    end
+  end
+
+  if(newVideoId == nil) then
+    return videoId;
+  end
+
+  return newVideoId;
+
 end
