@@ -113,7 +113,7 @@ function get_content_function(p)
   }
 end
 
-function widget__create_function(p)
+function widget_create_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
   
   widgetHelper:createIconBlob(p, true);
@@ -121,7 +121,7 @@ function widget__create_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
-function widget__delete_function(p)
+function widget_delete_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
   
   widgetHelper:deleteIconBlob(p, false);
@@ -129,7 +129,7 @@ function widget__delete_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
-function widget__modify_function(p)
+function widget_modify_function(p)
   local widgetHelper = new("FDLCustomWidgetHelper");
   
   widgetHelper:modifyIconBlob(p, true);
@@ -137,6 +137,6 @@ function widget__modify_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
 
-function widget__advertise_function(p)
+function widget_advertise_function(p)
   return { returnCode = "SUCCESSFUL", returnType="BOOLEAN", returnContent="true" }
 end
