@@ -71,7 +71,7 @@ function get_content_function(p)
 
   local id = "markdown-" .. new("FDLHashHelper"):getRandomUUID();
 
-  local css = ".MarkdownScrollPanel{position: relative; width: 100%; height: 100%; overflow-x: hidden; overflow-y: scroll;}\n.MarkdownPanel{position: relative;left: 5%;width: 90%;}";
+  local css = ".MarkdownScrollPanel{position: relative; width: 100%; height: 100%; overflow-x: hidden; overflow-y: scroll;}\n.MarkdownPanel{position: relative;}";
 
   local converter = "https://pagedown.googlecode.com/hg/Markdown.Converter.js";
   --local sanitiser = "https://pagedown.googlecode.com/hg/Markdown.Sanitizer.js";
