@@ -139,7 +139,7 @@ function get_content_function(p)
   headers["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
   headers["Authorization"] = "Bearer "..response.access_token;
 
-  local screen_name = p.resourceValues.screen_name;
+  local screen_name = validateScreenName(p.resourceValues.screen_name);
   local max_tweets = p.resourceValues.max_tweets;
   if(max_tweets == nil) then
     max_tweets = 50;
@@ -660,4 +660,16 @@ function getTweetText(tweet)
   end
 
   return text;
+end
+
+function validateScreenName(screenName)
+  
+  local hasAt = new("Utils"):stringStartsWith(screenName, "@");
+  
+  if(hasAt) then
+    screenName = string.sub(screenName, 2)
+  end
+  
+  return screenName;
+  
 end
