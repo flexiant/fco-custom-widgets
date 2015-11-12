@@ -121,7 +121,8 @@ function validateVideoId(videoId)
   table.insert(patterns, "%/v/([%w%-%_]+)");
   table.insert(patterns, "%/videos/([%w%-%_]+)");
   table.insert(patterns, "%/embed/([%w%-%_]+)");
-  table.insert(patterns, "youtu.be?%/([%w%-%_]+)");
+  table.insert(patterns, "youtu.be%/([%w%-%_]+)");
+  table.insert(patterns, "v=([%w%-%_]+)");
 
   local newVideoId = nil;
 
